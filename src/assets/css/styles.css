@@ -1,0 +1,25 @@
+.active {
+    color: black;
+    border-bottom: 4px solid white; 
+    width: max-content;
+    /* padding-inline: ; */
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    clear: both;
+    margin-top: 0;
+  }
+  .body {
+      position: relative;
+      padding-bottom: 0px;
+      height: '100%';
+      min-height: 90vh;
+      overflow: hidden;
+      padding-bottom: 30px;
+}
