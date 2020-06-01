@@ -31,7 +31,7 @@ export const Service = () => {
         <Card.Body>
           <Row>
             <Col sm>
-              <img src={express} style={styles.image} />
+              <img src={express} style={styles.image} alt='Express' />
             </Col>
             <Col sm={8}>
               <Card.Text>
@@ -50,7 +50,7 @@ export const Service = () => {
         <Card.Body>
           <Row>
             <Col sm>
-              <img src={premium} style={styles.image} />
+              <img src={premium} style={styles.image} alt='Premium' />
             </Col>
             <Col sm={8}>
               <Card.Text>
@@ -69,7 +69,7 @@ export const Service = () => {
         <Card.Body>
           <Row>
             <Col sm>
-              <img src={luxe} style={styles.image} />
+              <img src={luxe} style={styles.image} alt='Express' />
             </Col>
             <Col md={8}>
               <Card.Text>

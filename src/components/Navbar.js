@@ -16,7 +16,7 @@ function MainNavbar () {
     <>
       <Navbar bg='dark' variant='dark' expand='lg' color='white'>
         <Navbar.Brand>
-          <img src={logo} width='80' height='30' />
+          <img src={logo} width='80' height='30' alt='logo' />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
