@@ -7,7 +7,7 @@ export const MainFooter = () => (
     <Navbar bg='dark' variant='dark' expand='lg'>
       <Nav className='m-auto'>
         <Container>
-          <span className='header_footer'>copy right 2020</span>
+          <span className='header_footer'>copy right 2020 - kvk 0029292929292</span>
         </Container>
       </Nav>
     </Navbar>
