@@ -4,6 +4,7 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import 'bootstrap/dist/css/bootstrap.min.css'
+require('react-web-vector-icons/fonts')
 
 ReactDOM.render(
   <React.StrictMode>
