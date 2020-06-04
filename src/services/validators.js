@@ -10,9 +10,10 @@
  * @returns {bool} - true if regex matched, else false.
  */
 export function validateEmail (val) {
-  console.log('emailInputChange val: ', val)
+//   console.log('emailInputChange val: ', val)
   var format = /\S+@\S+\.\S+/
   if (format.test(val)) {
+    // console.log('email is valid')
     return true
   } else {
     return false
@@ -26,12 +27,12 @@ export function validateEmail (val) {
    */
 export function validateMobileno (val) {
   console.log('mobileno val: ', val.length)
-  var format = /^[0]\d{8,9}$/
+  var format = /^[0]\d{9,10}$/
   if (format.test(val)) {
-    console.log('mobileNo is valid')
+    // console.log('mobileNo is valid')
     return true
   } else {
-    console.log('mobileNo is not valid')
+    // console.log('mobileNo is not valid')
     return false
   }
 }
@@ -39,11 +40,26 @@ export function validateMobileno (val) {
 /**
  * takes a string and checks it's lenght that should be
  * > 0.
- * @param {sring} val - company name
+ * @param {sring} val - validateDefaultStringValue
  * @returns {bool} - true if length > 0 else false
  */
-export function validateCompanyname (val) {
-  if (val.lenght !== 0) {
+export function validateDefaultStringValue (val) {
+//   var companyName = val.trim()
+  if (val.lenght !== 0 && val) {
+    return true
+  } else {
+    return false
+  }
+}
+
+/**
+ * takes a string and checks it's lenght that should be
+ * > 0.
+ * @param {sring} val - validateDefaultIntegerValue
+ * @returns {bool} - true if length > 0 else false
+ */
+export function validateDefaultIntegerValue (val) {
+  if (!isNaN(val) && val.length !== 0) {
     return true
   } else {
     return false
