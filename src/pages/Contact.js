@@ -149,7 +149,7 @@ export const Contact = () => {
    * to send the form value to it's email api.
    * @param {*} event - submit event.
    */
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     // console.log('submit pressed')
     const api = apiconfigs.mynodejs.api.mail.sendmail
 
@@ -158,13 +158,13 @@ export const Contact = () => {
     delete tempFields.captcha
     axios.post(api, tempFields)
       .then(response => {
-        // console.log('response in contact: ', response)
+        console.log('response in contact: ', response)
         setResponse(response.data.message)
         resetForm()
       })
       .catch(error => {
         console.log('error: ', error)
-        setResponse(error)
+        setResponse('An error occured')
       })
     event.preventDefault()
   }
