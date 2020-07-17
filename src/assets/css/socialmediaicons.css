@@ -1,0 +1,11 @@
+.follow-us-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #13178C;
+    padding-top: 7px;
+}
+
+.follow-us-icons a {
+    margin: 0.5rem 0.5rem 0 !important ; 
+}

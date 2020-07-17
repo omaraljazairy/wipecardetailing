@@ -1,35 +1,53 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, ResponsiveEmbed} from 'react-bootstrap'
+import Iconlist from '../components/IconList/Iconlist'
+import bioecology from '../assets/img/bio-ecology-leaf.png'
+import maptopoint from '../assets/img/map-point-logo-icon.jpg'
+import cardealership from '../assets/img/car-dealership.jpg'
+import fillingstationfuel from '../assets/img/filling-station-fuel.jpg'
 
 export const Home = () => {
-  const styles = {
-    header: {
-      fontFamily: 'Serif',
-      color: '#000000',
-      fontWeight: 'bold',
-      paddingBottom: '30px'
+
+  const IconlistData = [
+    {
+      icon: fillingstationfuel,
+      title:"Tankstations",
+      description: "Milieuvriendelijk: Systematisch schoonmaak waarbij waterbesparende technieken worden toegepast."
     },
-    content: {
-      fontFamily: 'Serif',
-      fontWeight: 'normal',
-      boxShadow: '5px 5px 5px 1px',
-      marginBottom: '30px'
+    {
+      icon: bioecology,
+      title: "Milieuvriendelijk",
+      description: "Systematisch schoonmaak waarbij waterbesparende technieken worden toegepast."
+    },
+    {
+      icon: maptopoint,
+      title: "Op locatie",
+      description: "Door onze flexibiliteit komen onze professionals naar u toe."
+    },
+    {
+      icon: cardealership,
+      title: "Voertuigcategorieën",
+      description: "Alle categorieën van toepassing."
     }
+  ]
+
+  const styles = {
+    embededVideo: {
+      width: 'auto',
+      height: 'auto',
+    },
   }
 
   return (
     <Container>
-      <div style={styles.header}>
-        Title van Home pagina hier
-        -- We zijn Auto Schoonmaken heel goed prima uitstekend. --
+      <div style={styles.embededVideo}>
+        <ResponsiveEmbed aspectRatio="16by9">
+          <embed src="https://www.youtube.com/embed/2T2ViapKakc?autoplay=0" />
+        </ResponsiveEmbed>
       </div>
-      <div style={styles.content}>
-        Content van Home pagina hier
-        -- We werken met goed tools zoals hammers van horenbach. --
-      </div>
-      <div style={styles.content}>
-        Nog meer Content van Home pagina hier
-        -- We auto niet stuk maken mooi eruit zien prachtig allemachtig. --
+      <div className="home-links">
+        <Iconlist data={IconlistData}
+      />
       </div>
     </Container>
   )

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Form, Col, Button } from 'react-bootstrap'
+import { Form, Col, Row, Button, Container } from 'react-bootstrap'
 import ReCAPTCHA from 'react-google-recaptcha'
 import axios from '../axios'
 import apiconfigs from '../configs/api.json'
-import { validateDefaultStringValue, validateMobileno, validateEmail, validateDefaultIntegerValue } from '../services/validators'
+import { validateDefaultStringValue, validateMobileno, validateEmail, validateDefaultIntegerValue, validatePostcodeValue } from '../services/validators'
+import '../assets/css/styles.css'
 
 /**
  * this is the Contact functional component. It renders a form that uses the google
@@ -25,7 +26,11 @@ export const Contact = () => {
       tel: '',
       city: '',
       totalCars: '',
-      captcha: ''
+      captcha: '',
+      street: '',
+      housenr: '',
+      postcode: '',
+      message: ''
     }
   )
 
@@ -37,7 +42,11 @@ export const Contact = () => {
       telIsValid: false,
       cityIsValid: false,
       totalCarsIsValid: false,
-      captchaIsValid: false
+      captchaIsValid: false,
+      streetIsValid: false,
+      housenrIsValid: false,
+      postcodeIsValid: false,
+      messageIsValid: false
     }
   )
   const [response, setResponse] = useState(null)
@@ -66,7 +75,7 @@ export const Contact = () => {
         break
       case 'city':
         setFields(prevState => ({ ...prevState, city: val }))
-        setValidFields(prevState => ({ ...prevState, cityIsValid: validateDefaultStringValue(val) }))
+        setValidFields(prevState => ({ ...prevState, cityIsValid: validateDefaultStringValue(val, 20) }))
         break
       case 'totalCars':
         setFields(prevState => ({ ...prevState, totalCars: val }))
@@ -76,6 +85,22 @@ export const Contact = () => {
         setFields(prevState => ({ ...prevState, captcha: val }))
         setValidFields(prevState => ({ ...prevState, captchaIsValid: validateDefaultStringValue(val) }))
         break
+      case 'street':
+          setFields(prevState => ({ ...prevState, street: val }))
+          setValidFields(prevState => ({ ...prevState, streetIsValid: validateDefaultStringValue(val, 20) }))
+          break
+      case 'housenr':
+          setFields(prevState => ({ ...prevState, housenr: val }))
+          setValidFields(prevState => ({ ...prevState, housenrIsValid: validateDefaultStringValue(val, 7) }))
+          break
+      case 'postcode':
+          setFields(prevState => ({ ...prevState, postcode: val }))
+          setValidFields(prevState => ({ ...prevState, postcodeIsValid: validatePostcodeValue(val) }))
+          break
+      case 'message':
+          setFields(prevState => ({ ...prevState, message: val }))
+          setValidFields(prevState => ({ ...prevState, messageIsValid: validateDefaultStringValue(val, 900) }))
+          break
       default:
         return 'unknown field name'
     }
@@ -128,7 +153,11 @@ export const Contact = () => {
       tel: '',
       city: '',
       totalCars: '',
-      captcha: null
+      captcha: null,
+      street: '',
+      housenr: '',
+      postcode: '',
+      message: ''
     })
 
     setValidFields({
@@ -137,7 +166,11 @@ export const Contact = () => {
       telIsValid: false,
       cityIsValid: false,
       totalCarsIsValid: false,
-      captchaIsValid: false
+      captchaIsValid: false,
+      streetIsValid: false,
+      housenrIsValid: false,
+      postcodeIsValid: false,
+      messageIsValid: false
     })
     validateForm()
     captcha.reset()
@@ -185,11 +218,25 @@ export const Contact = () => {
     },
     totalCarsField: {
       background: validFields.totalCarsIsValid ? 'lightgreen' : 'white'
+    },
+    streetField: {
+      background: validFields.streetIsValid ? 'lightgreen' : 'white'
+    },
+    housenrField: {
+      background: validFields.housenrIsValid ? 'lightgreen' : 'white'
+    },
+    postcodeField: {
+      background: validFields.postcodeIsValid ? 'lightgreen' : 'white'
+    },
+    messageField: {
+      background: validFields.messageIsValid ? 'lightgreen' : 'white'
     }
+
   }
 
   return (
-    <div>
+    <Container>
+      <div>
       <h2>Contact voor een offerte</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Row>
@@ -205,30 +252,50 @@ export const Contact = () => {
               <Form.Control type='email' placeholder='emailadres' name='email' value={fields.email} onChange={val => setAndValidateForm('email', val.target.value.trim())} style={styles.emailField} />
             </Form.Group>
           </Col>
-        </Form.Row>
-        <Form.Row>
           <Col sm>
             <Form.Group controlId='tel'>
               <Form.Label>Telefoon nummer</Form.Label>
               <Form.Control type='text' placeholder='06 nummer' name='tel' value={fields.tel} onChange={val => setAndValidateForm('tel', val.target.value.trim())} style={styles.telField} />
             </Form.Group>
           </Col>
+        </Form.Row>
+        <Form.Row>
           <Col sm>
-            <Form.Group controlId='place'>
-              <Form.Label>Plaats</Form.Label>
-              <Form.Control as='select' name='city' value={fields.city} onChange={val => setAndValidateForm('city', val.target.value)} style={styles.cityField}>
-                <option value=''>-----Selecter Stad------</option>
-                <option value='Amsterdam'>Amsterdam</option>
-                <option value='Haarlem'>Haarlem</option>
-                <option value='Utrecht'>Utrecht</option>
-                <option value='Zaandam'>Zaandam</option>
-              </Form.Control>
+            <Form.Group controlId='street'>
+              <Form.Label>Straatname</Form.Label>
+              <Form.Control type='text' placeholder='Straat' name='street' value={fields.street} onChange={val => setAndValidateForm('street', val.target.value.trim())} style={styles.streetField} />
+            </Form.Group>
+          </Col>
+          <Col sm={1}>
+            <Form.Group controlId='housenr'>
+              <Form.Label>Huisnr</Form.Label>
+              <Form.Control type='text' placeholder='huisnr' name='housenr' value={fields.housenr} onChange={val => setAndValidateForm('housenr', val.target.value.trim())} style={styles.housenrField} />
+            </Form.Group>
+          </Col>
+          <Col sm={2}>
+            <Form.Group controlId='postcode'>
+              <Form.Label>Postcode</Form.Label>
+              <Form.Control type='text' placeholder='postcode' name='postcode' value={fields.postcode} onChange={val => setAndValidateForm('postcode', val.target.value.trim())} style={styles.postcodeField} />
             </Form.Group>
           </Col>
           <Col sm>
+            <Form.Group controlId='city'>
+              <Form.Label>Plaats</Form.Label>
+              <Form.Control type='text' placeholder='plaats' name='city' value={fields.city} onChange={val => setAndValidateForm('city', val.target.value.trim())} style={styles.cityField} />
+            </Form.Group>
+          </Col>
+        </Form.Row>
+        <Form.Row>
+          <Col sm={2}>
             <Form.Group controlId='totalCars'>
               <Form.Label>Aantal Autos</Form.Label>
-              <Form.Control type='number' placeholder='aantal autos' name='totalCars' value={fields.totalCars} onChange={val => setAndValidateForm('totalCars', val.target.value.trim())} min='1' style={styles.totalCarsField} />
+              <Form.Control type='number' placeholder='1' name='totalCars' value={fields.totalCars} onChange={val => setAndValidateForm('totalCars', val.target.value.trim())} min='1' style={styles.totalCarsField} />
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group controlId='message'>
+              <Form.Label>Bericht</Form.Label>
+              <Form.Control as='textarea' rows='3' placeholder='bericht' name='berich' value={fields.message} onChange={val => setAndValidateForm('message', val.target.value.trim())} style={styles.messageField} />
             </Form.Group>
           </Col>
         </Form.Row>
@@ -255,6 +322,33 @@ export const Contact = () => {
         </Form.Row>
       </Form>
       <h2>{response}</h2>
-    </div>
+      </div>
+      <div>
+        <Row>
+          <Col>
+            Wij werken in heel Nederland!
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          <p>Openingstijden: Dagelijks van 07:00 uur tot 22:00 uur</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm>
+            <p><b>Tel nr.:</b><br></br> 0634992739</p>
+          </Col>
+          <Col sm>
+            <p><b>e-mail:</b><br></br>info@wipecardetailing.nl</p>
+          </Col>
+          <Col sm>
+            <p><b>Instagram:</b><br></br>Wipecardetailing</p>
+          </Col>
+          <Col sm>
+            <p><b>Youtube:</b><br></br>Wipecardetailing</p>
+          </Col>
+        </Row>
+      </div>
+    </Container>
   )
 }

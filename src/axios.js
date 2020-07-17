@@ -9,15 +9,15 @@ instance.defaults.headers['Content-Type'] = 'application/json'
 instance.defaults.headers['Access-Control-Allow-Origin'] = '*'
 
 instance.interceptors.request.use(request => {
-  console.log('axios request: ', request)
+  // console.log('axios request: ', request)
   return request
 }, error => {
-  console.log('axios error in request: ', error)
+  // console.log('axios error in request: ', error)
   return Promise.reject(error)
 })
 
 instance.interceptors.response.use(response => {
-  console.log('axios response: ', response)
+  // console.log('axios response: ', response)
   const responseObject = {
     data: response.data,
     statusCode: response.status,
@@ -25,7 +25,7 @@ instance.interceptors.response.use(response => {
   }
   return responseObject
 }, error => {
-  console.log('axios error in response: ', error)
+  // console.log('axios error in response: ', error)
   return Promise.reject(error)
 })
 

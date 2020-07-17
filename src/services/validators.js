@@ -26,7 +26,7 @@ export function validateEmail (val) {
    * @returns {bool} -  - true if length > 0 else false.
    */
 export function validateMobileno (val) {
-  console.log('mobileno val: ', val.length)
+  //   console.log('mobileno val: ', val.length)
   var format = /^[0]\d{9,10}$/
   if (format.test(val)) {
     // console.log('mobileNo is valid')
@@ -43,9 +43,31 @@ export function validateMobileno (val) {
  * @param {sring} val - validateDefaultStringValue
  * @returns {bool} - true if length > 0 else false
  */
-export function validateDefaultStringValue (val) {
-//   var companyName = val.trim()
-  if (val.lenght !== 0 && val) {
+export function validateDefaultStringValue (val, max=false) {
+  if (max) {
+    if (val.length > 0 && val.length < max) {
+      return true
+    } else {
+      return false
+    }
+  } else {
+    if (val.length !== 0 && val) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+}
+
+/**
+ * validate the postcode value to be 6 characters without space.
+ * @param {string} val - postcode value 
+ * @return {bool} - true if length === 6, false otherwise
+ */
+export function validatePostcodeValue(val) {
+  var format = /^[0-9]{4}[a-zA-Z]{2}$/
+  if (format.test(val.trim())) {
     return true
   } else {
     return false
