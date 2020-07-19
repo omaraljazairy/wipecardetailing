@@ -1,24 +1,32 @@
 import React from 'react'
 import { Container , Row, Col, Image } from 'react-bootstrap'
-import '../assets/css/styles.css'
+import '../assets/css/tankstations.css'
+import Divider from '../components/Divider/Divider';
 import tankstations from '../assets/img/tankstations.jpg'
+import CustomForm from '../components/Form/CustomForm';
 
 export const Tankstations = () => {
 
-  // const width = window.innerWidth;
-  const height = window.innerHeight;
+  const screenWidth = window.innerWidth;
 
   const styles = {
     image: {
-      width: '100%',
-      height: height - 560
+      width: 350,
+      height: 300,
+      maxWidth: screenWidth - 30
+    },
+    imgColumn: {
+      paddingLeft: 15,
+      paddingRight: 1,
+      paddingBottom: 15
     }
   }
 
+
   return ( 
     <Container fluid="xl">
-      <Row>
-        <Col>
+      <Row className="justify-content-md-center">
+        <Col md={8}>
           <p>
           Met onze milieuvriendelijke en duurzame reinigingssysteem reinigen wij uw tankstation.
           <br></br>Onze hogedruk stoomreinigingssysteem zorgt voor een antibacterieel en antischimmel werking en verwijdert met behulp van additieven vaste stoffen en ingewerkte vloeibare stoffen.
@@ -36,12 +44,16 @@ export const Tankstations = () => {
             <li>Prijsbord reinigen</li>
           </ul>
         </Col>
-      </Row>
-      <Row>
-        <Col>
+        <Col md={4} style={styles.imgColumn}>
           <Image src={tankstations} style={styles.image} />
         </Col>
       </Row>
+      <Row>
+        <Col>
+          <Divider />
+        </Col>
+      </Row>
+      <CustomForm />
     </Container>
   )
 }

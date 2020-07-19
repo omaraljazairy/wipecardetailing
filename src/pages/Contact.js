@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
-import { Form, Col, Row, Button, Container } from 'react-bootstrap'
+import { Form, Col, Row, Button, Image } from 'react-bootstrap'
 import ReCAPTCHA from 'react-google-recaptcha'
 import axios from '../axios'
 import apiconfigs from '../configs/api.json'
-import { validateDefaultStringValue, validateMobileno, validateEmail, validateDefaultIntegerValue, validatePostcodeValue } from '../services/validators'
-import '../assets/css/styles.css'
+import { validateDefaultStringValue, validateEmail } from '../services/validators'
+import '../assets/css/contact.css'
+import Divider from '../components/Divider/Divider';
+import phoneIcon from '../assets/img/icons8-phone-48.png';
+import emailIcon from '../assets/img/icons8-email-48.png';
+import instagramIcon from '../assets/img/icons8-instagram-48.png';
+import youtubeIcon from '../assets/img/icons8-play-button-48.png';
+
 
 /**
  * this is the Contact functional component. It renders a form that uses the google
@@ -24,12 +30,12 @@ export const Contact = () => {
       companyName: '',
       email: '',
       tel: '',
-      city: '',
-      totalCars: '',
+      // city: '',
+      // totalCars: '',
       captcha: '',
-      street: '',
-      housenr: '',
-      postcode: '',
+      // street: '',
+      // housenr: '',
+      // postcode: '',
       message: ''
     }
   )
@@ -39,13 +45,13 @@ export const Contact = () => {
     {
       companyNameIsValid: false,
       emailIsValid: false,
-      telIsValid: false,
-      cityIsValid: false,
-      totalCarsIsValid: false,
+      // telIsValid: false,
+      // cityIsValid: false,
+      // totalCarsIsValid: false,
       captchaIsValid: false,
-      streetIsValid: false,
-      housenrIsValid: false,
-      postcodeIsValid: false,
+      // streetIsValid: false,
+      // housenrIsValid: false,
+      // postcodeIsValid: false,
       messageIsValid: false
     }
   )
@@ -65,38 +71,38 @@ export const Contact = () => {
         setFields(prevState => ({ ...prevState, companyName: val }))
         setValidFields(prevState => ({ ...prevState, companyNameIsValid: validateDefaultStringValue(val) }))
         break
-      case 'tel':
-        setFields(prevState => ({ ...prevState, tel: val }))
-        setValidFields(prevState => ({ ...prevState, telIsValid: validateMobileno(val) }))
-        break
+      // case 'tel':
+      //   setFields(prevState => ({ ...prevState, tel: val }))
+      //   setValidFields(prevState => ({ ...prevState, telIsValid: validateMobileno(val) }))
+      //   break
       case 'email':
         setFields(prevState => ({ ...prevState, email: val }))
         setValidFields(prevState => ({ ...prevState, emailIsValid: validateEmail(val) }))
         break
-      case 'city':
-        setFields(prevState => ({ ...prevState, city: val }))
-        setValidFields(prevState => ({ ...prevState, cityIsValid: validateDefaultStringValue(val, 20) }))
-        break
-      case 'totalCars':
-        setFields(prevState => ({ ...prevState, totalCars: val }))
-        setValidFields(prevState => ({ ...prevState, totalCarsIsValid: validateDefaultIntegerValue(val) }))
-        break
+      // case 'city':
+      //   setFields(prevState => ({ ...prevState, city: val }))
+      //   setValidFields(prevState => ({ ...prevState, cityIsValid: validateDefaultStringValue(val, 20) }))
+      //   break
+      // case 'totalCars':
+      //   setFields(prevState => ({ ...prevState, totalCars: val }))
+      //   setValidFields(prevState => ({ ...prevState, totalCarsIsValid: validateDefaultIntegerValue(val) }))
+      //   break
       case 'captcha':
         setFields(prevState => ({ ...prevState, captcha: val }))
         setValidFields(prevState => ({ ...prevState, captchaIsValid: validateDefaultStringValue(val) }))
         break
-      case 'street':
-          setFields(prevState => ({ ...prevState, street: val }))
-          setValidFields(prevState => ({ ...prevState, streetIsValid: validateDefaultStringValue(val, 20) }))
-          break
-      case 'housenr':
-          setFields(prevState => ({ ...prevState, housenr: val }))
-          setValidFields(prevState => ({ ...prevState, housenrIsValid: validateDefaultStringValue(val, 7) }))
-          break
-      case 'postcode':
-          setFields(prevState => ({ ...prevState, postcode: val }))
-          setValidFields(prevState => ({ ...prevState, postcodeIsValid: validatePostcodeValue(val) }))
-          break
+      // case 'street':
+      //     setFields(prevState => ({ ...prevState, street: val }))
+      //     setValidFields(prevState => ({ ...prevState, streetIsValid: validateDefaultStringValue(val, 20) }))
+      //     break
+      // case 'housenr':
+      //     setFields(prevState => ({ ...prevState, housenr: val }))
+      //     setValidFields(prevState => ({ ...prevState, housenrIsValid: validateDefaultStringValue(val, 7) }))
+      //     break
+      // case 'postcode':
+      //     setFields(prevState => ({ ...prevState, postcode: val }))
+      //     setValidFields(prevState => ({ ...prevState, postcodeIsValid: validatePostcodeValue(val) }))
+      //     break
       case 'message':
           setFields(prevState => ({ ...prevState, message: val }))
           setValidFields(prevState => ({ ...prevState, messageIsValid: validateDefaultStringValue(val, 900) }))
@@ -150,26 +156,26 @@ export const Contact = () => {
     setFields({
       companyName: '',
       email: '',
-      tel: '',
-      city: '',
-      totalCars: '',
+      // tel: '',
+      // city: '',
+      // totalCars: '',
       captcha: null,
-      street: '',
-      housenr: '',
-      postcode: '',
+      // street: '',
+      // housenr: '',
+      // postcode: '',
       message: ''
     })
 
     setValidFields({
       companyNameIsValid: false,
       emailIsValid: false,
-      telIsValid: false,
-      cityIsValid: false,
-      totalCarsIsValid: false,
+      // telIsValid: false,
+      // cityIsValid: false,
+      // totalCarsIsValid: false,
       captchaIsValid: false,
-      streetIsValid: false,
-      housenrIsValid: false,
-      postcodeIsValid: false,
+      // streetIsValid: false,
+      // housenrIsValid: false,
+      // postcodeIsValid: false,
       messageIsValid: false
     })
     validateForm()
@@ -210,97 +216,73 @@ export const Contact = () => {
     companyNameField: {
       background: validFields.companyNameIsValid ? 'lightgreen' : 'white'
     },
-    telField: {
-      background: validFields.telIsValid ? 'lightgreen' : 'white'
-    },
-    cityField: {
-      backgroundColor: validFields.cityIsValid ? 'lightgreen' : 'white'
-    },
-    totalCarsField: {
-      background: validFields.totalCarsIsValid ? 'lightgreen' : 'white'
-    },
-    streetField: {
-      background: validFields.streetIsValid ? 'lightgreen' : 'white'
-    },
-    housenrField: {
-      background: validFields.housenrIsValid ? 'lightgreen' : 'white'
-    },
-    postcodeField: {
-      background: validFields.postcodeIsValid ? 'lightgreen' : 'white'
-    },
+    // telField: {
+    //   background: validFields.telIsValid ? 'lightgreen' : 'white'
+    // },
+    // cityField: {
+    //   backgroundColor: validFields.cityIsValid ? 'lightgreen' : 'white'
+    // },
+    // totalCarsField: {
+    //   background: validFields.totalCarsIsValid ? 'lightgreen' : 'white'
+    // },
+    // streetField: {
+    //   background: validFields.streetIsValid ? 'lightgreen' : 'white'
+    // },
+    // housenrField: {
+    //   background: validFields.housenrIsValid ? 'lightgreen' : 'white'
+    // },
+    // postcodeField: {
+    //   background: validFields.postcodeIsValid ? 'lightgreen' : 'white'
+    // },
     messageField: {
       background: validFields.messageIsValid ? 'lightgreen' : 'white'
+    },
+    icon: {
+      width: 48,
+      height: 48
     }
-
   }
 
+  const formFieldSize_m = 8
+  const iconColSize = 1
+  const infoColSize = 8
+
   return (
-    <Container>
-      <div>
-      <h2>Contact voor een offerte</h2>
+    <div className="container">
+      <div className="form">
+      <Row className="justify-content-md-center">
+        <Col md={formFieldSize_m}>
+          <h3>Contact & informatie</h3>
+          <hr></hr>
+        </Col>
+      </Row>
       <Form onSubmit={handleSubmit}>
-        <Form.Row>
-          <Col sm>
+        <Form.Row className="justify-content-md-center">
+          <Col md={formFieldSize_m}>
             <Form.Group controlId='company'>
               <Form.Label>Bedrijfnaam</Form.Label>
-              <Form.Control type='text' placeholder='uw bedrijfnaam' name='companyName' value={fields.companyName} onChange={val => setAndValidateForm('companyName', val.target.value.trim())} style={styles.companyNameField} />
+              <Form.Control type='text' placeholder='uw bedrijfnaam' name='companyName' value={fields.companyName} onChange={val => setAndValidateForm('companyName', val.target.value)} style={styles.companyNameField} />
             </Form.Group>
           </Col>
-          <Col sm>
+        </Form.Row>
+        <Form.Row className="justify-content-md-center">
+          <Col md={formFieldSize_m}>
             <Form.Group controlId='email'>
               <Form.Label>Email</Form.Label>
-              <Form.Control type='email' placeholder='emailadres' name='email' value={fields.email} onChange={val => setAndValidateForm('email', val.target.value.trim())} style={styles.emailField} />
-            </Form.Group>
-          </Col>
-          <Col sm>
-            <Form.Group controlId='tel'>
-              <Form.Label>Telefoon nummer</Form.Label>
-              <Form.Control type='text' placeholder='06 nummer' name='tel' value={fields.tel} onChange={val => setAndValidateForm('tel', val.target.value.trim())} style={styles.telField} />
+              <Form.Control type='email' placeholder='emailadres' name='email' value={fields.email} onChange={val => setAndValidateForm('email', val.target.value)} style={styles.emailField} />
             </Form.Group>
           </Col>
         </Form.Row>
-        <Form.Row>
-          <Col sm>
-            <Form.Group controlId='street'>
-              <Form.Label>Straatname</Form.Label>
-              <Form.Control type='text' placeholder='Straat' name='street' value={fields.street} onChange={val => setAndValidateForm('street', val.target.value.trim())} style={styles.streetField} />
-            </Form.Group>
-          </Col>
-          <Col sm={1}>
-            <Form.Group controlId='housenr'>
-              <Form.Label>Huisnr</Form.Label>
-              <Form.Control type='text' placeholder='huisnr' name='housenr' value={fields.housenr} onChange={val => setAndValidateForm('housenr', val.target.value.trim())} style={styles.housenrField} />
-            </Form.Group>
-          </Col>
-          <Col sm={2}>
-            <Form.Group controlId='postcode'>
-              <Form.Label>Postcode</Form.Label>
-              <Form.Control type='text' placeholder='postcode' name='postcode' value={fields.postcode} onChange={val => setAndValidateForm('postcode', val.target.value.trim())} style={styles.postcodeField} />
-            </Form.Group>
-          </Col>
-          <Col sm>
-            <Form.Group controlId='city'>
-              <Form.Label>Plaats</Form.Label>
-              <Form.Control type='text' placeholder='plaats' name='city' value={fields.city} onChange={val => setAndValidateForm('city', val.target.value.trim())} style={styles.cityField} />
-            </Form.Group>
-          </Col>
-        </Form.Row>
-        <Form.Row>
-          <Col sm={2}>
-            <Form.Group controlId='totalCars'>
-              <Form.Label>Aantal Autos</Form.Label>
-              <Form.Control type='number' placeholder='1' name='totalCars' value={fields.totalCars} onChange={val => setAndValidateForm('totalCars', val.target.value.trim())} min='1' style={styles.totalCarsField} />
-            </Form.Group>
-          </Col>
-          <Col>
+        <Form.Row className="justify-content-md-center">
+          <Col md={formFieldSize_m}>
             <Form.Group controlId='message'>
               <Form.Label>Bericht</Form.Label>
-              <Form.Control as='textarea' rows='3' placeholder='bericht' name='berich' value={fields.message} onChange={val => setAndValidateForm('message', val.target.value.trim())} style={styles.messageField} />
+              <Form.Control as='textarea' rows='3' placeholder='bericht' name='berich' value={fields.message} onChange={val => setAndValidateForm('message', val.target.value)} style={styles.messageField} />
             </Form.Group>
           </Col>
         </Form.Row>
-        <Form.Row>
-          <Col sm>
+        <Form.Row className="justify-content-md-center">
+          <Col md={formFieldSize_m}>
             <Form.Group controlId='captcha'>
               <ReCAPTCHA
                 ref={(r) => setCaptchaRef(r)}
@@ -311,7 +293,7 @@ export const Contact = () => {
             </Form.Group>
           </Col>
         </Form.Row>
-        <Form.Row>
+        <Form.Row className="justify-content-md-center">
           <Col sm={4}>
             <Form.Group controlId='submit'>
               <Button variant='primary' type='submit' disabled={!validateForm()} block>
@@ -323,32 +305,57 @@ export const Contact = () => {
       </Form>
       <h2>{response}</h2>
       </div>
-      <div>
-        <Row>
+      <div className="info">
+      <Row className="info-row">
           <Col>
-            Wij werken in heel Nederland!
+            <h3>Wij werken in heel Nederland!</h3>
+            <hr></hr>
+          </Col>
+        </Row>
+        <Row className="info-row">
+          <Col sm={iconColSize} className="info-col-icon">
+            <Image src={phoneIcon} style={styles.icon} roundedCircle />
+          </Col>
+          <Col sm={infoColSize} className="info-col-text">
+            <a href="tel:+31634992739"><p>0634992739</p></a>
+          </Col>
+        </Row>
+        <Row className="info-row">
+          <Col sm={iconColSize} className="info-col-icon">
+            <Image src={emailIcon} style={styles.icon} roundedCircle />
+          </Col>
+          <Col sm={infoColSize} className="info-col-text">
+            <a href="mailto:info@wipecardetailing.nl"><p>info@wipecardetailing.nl</p></a>
+          </Col>
+        </Row>
+        <Row className="info-row">
+        <Col sm={iconColSize} className="info-col-icon">
+            <Image src={instagramIcon} style={styles.icon} roundedCircle />
+          </Col>
+          <Col sm={infoColSize} className="info-col-text">
+            <a href="https://www.instagram.com/wipecardetailing/?hl=en"><p>via Instagram</p></a>
+          </Col>
+        </Row>
+        <Row className="info-row">
+        <Col sm={iconColSize} className="info-col-icon">
+            <Image src={youtubeIcon} style={styles.icon} roundedCircle />
+          </Col>
+          <Col sm={infoColSize} className="info-col-text">
+            <a href="https://www.youtube.com/channel/UCZ6VItM3YRcFzoj3PXvGJBg"><p>via Youtube</p></a>
           </Col>
         </Row>
         <Row>
-          <Col>
-          <p>Openingstijden: Dagelijks van 07:00 uur tot 22:00 uur</p>
+          <Col sm>
+            <Divider />
           </Col>
         </Row>
-        <Row>
-          <Col sm>
-            <p><b>Tel nr.:</b><br></br> 0634992739</p>
-          </Col>
-          <Col sm>
-            <p><b>e-mail:</b><br></br>info@wipecardetailing.nl</p>
-          </Col>
-          <Col sm>
-            <p><b>Instagram:</b><br></br>Wipecardetailing</p>
-          </Col>
-          <Col sm>
-            <p><b>Youtube:</b><br></br>Wipecardetailing</p>
-          </Col>
+        <Row className="info-bottom-text-row">
+          <Col md='auto'>
+            <h3>Openingstijden:</h3>
+            <p>Dagelijks van 07:00 uur tot 22:00 uur</p>
+           </Col>
         </Row>
       </div>
-    </Container>
+    </div>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Row, Col, Image} from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import Divider from '../Divider/Divider';
 import '../../assets/css/iconlist.css';
 
 const Iconlist = props => {
@@ -41,7 +42,7 @@ const Iconlist = props => {
             </Row>
             <Row>
               <Col>
-                <hr className="divider"></hr>
+                <Divider />
               </Col>
             </Row>
           </div>

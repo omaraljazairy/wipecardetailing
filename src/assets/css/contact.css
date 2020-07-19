@@ -1,0 +1,49 @@
+.form {
+    width: 40%;
+    background-color: aliceblue;
+    padding: 1%;
+}
+
+.info {
+    background-color: aliceblue;
+    padding: 1%;
+}
+ .info-row {
+     width: fit-content;
+     padding-bottom: 26px;
+}
+
+.info-col-text {
+    padding-top: 10px;
+}
+
+.info-col-icon {
+    padding-right: 62px !important;
+}
+
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .info-col-text {
+        width: 64% !important;
+    }
+
+    .info-col-icon {
+        padding-right: 62px !important;
+        width: 5% !important;
+    }
+            
+}

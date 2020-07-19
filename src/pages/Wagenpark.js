@@ -1,7 +1,8 @@
-import React from 'react'
-import { Container, Image, Row, Col } from 'react-bootstrap'
-import '../assets/css/wagenpark.css'
-import wagenpark from '../assets/img/wagenpark.jpg'
+import React from 'react';
+import { Container, Image, Row, Col } from 'react-bootstrap';
+import Divider from '../components/Divider/Divider';
+import '../assets/css/wagenpark.css';
+import wagenpark from '../assets/img/wagenpark.jpg';
 
 export const Wagenpark = () => {
 
@@ -23,7 +24,7 @@ export const Wagenpark = () => {
   return ( 
     <Container fluid>
       <Row className="justify-content-md-center">
-        <Col md={4}>
+        <Col md={6}>
           <p>Wij worden graag uw partner in het reinigen van uw wagenpark!</p>
           <p>Vraag nu onze offerte aan:</p>
           <ul>
@@ -40,7 +41,7 @@ export const Wagenpark = () => {
       </Row>
       <Row>
         <Col>
-          <hr className="hr-style"></hr>
+          <Divider />
         </Col>
       </Row>
     </Container>

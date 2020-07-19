@@ -11,7 +11,7 @@
  */
 export function validateEmail (val) {
 //   console.log('emailInputChange val: ', val)
-  var format = /\S+@\S+\.\S+/
+  var format = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/ // /\S+@\S+\.\S+/
   if (format.test(val)) {
     // console.log('email is valid')
     return true
