@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, ResponsiveEmbed} from 'react-bootstrap'
+import { Container, ResponsiveEmbed, Row, Col} from 'react-bootstrap'
 import Iconlist from '../components/IconList/Iconlist'
 import bioecology from '../assets/img/bio-ecology-leaf.png'
 import maptopoint from '../assets/img/map-point-logo-icon.jpg'
@@ -31,24 +31,20 @@ export const Home = () => {
     }
   ]
 
-  const styles = {
-    embededVideo: {
-      width: 'auto',
-      height: 'auto',
-    },
-  }
-
   return (
-    <Container>
-      <div style={styles.embededVideo}>
-        <ResponsiveEmbed aspectRatio="16by9">
-          <embed src="https://www.youtube.com/embed/2T2ViapKakc?autoplay=0" />
-        </ResponsiveEmbed>
-      </div>
-      <div className="home-links">
-        <Iconlist data={IconlistData}
-      />
-      </div>
+    <Container fluid>
+      <Row className="justify-content-md-center">
+        <Col md={8}>
+          <ResponsiveEmbed aspectRatio="16by9">
+            <embed src="https://www.youtube.com/embed/2T2ViapKakc?autoplay=0" />
+          </ResponsiveEmbed>
+        </Col>
+      </Row>
+      <Row>
+        <Col md>
+          <Iconlist data={IconlistData} />
+        </Col>
+      </Row>
     </Container>
   )
 }
