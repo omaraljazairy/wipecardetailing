@@ -54,6 +54,10 @@ const SideDrawer = props => {
                     <Image src={contactIcon} style={styles.icons} alt="home"/> 
                     <NavLink exact to='/contact' activeClassName='active' onClick={props.drawerHandler}>Contact</NavLink>
                 </div>
+                <div className="side-drawer-items">
+                    <Image src={contactIcon} style={styles.icons} alt="media"/> 
+                    <NavLink exact to='/media' activeClassName='active' onClick={props.drawerHandler}>Media</NavLink>
+                </div>
             </nav>
             <div className="side-drawer__footer">
                 <SocialmediaIcons />

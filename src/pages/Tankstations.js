@@ -1,38 +1,32 @@
 import React from 'react'
-import { Container , Row, Col, Image } from 'react-bootstrap'
+import { Container , Image } from 'react-bootstrap'
 import '../assets/css/tankstations.css'
-import Divider from '../components/Divider/Divider';
 import tankstations from '../assets/img/tankstations.jpg'
 import CustomForm from '../components/Form/CustomForm';
 
 export const Tankstations = () => {
-
-  const screenWidth = window.innerWidth;
-
+ 
   const styles = {
     image: {
-      width: 350,
+      width: 'auto',
       height: 300,
-      maxWidth: screenWidth - 30
+      maxWidth: '100%',
+      maxHight: '100%',
+      position: 'relative'
     },
-    imgColumn: {
-      paddingLeft: 15,
-      paddingRight: 1,
-      paddingBottom: 15
-    }
   }
 
 
   return ( 
-    <Container fluid="xl">
-      <Row className="justify-content-md-center">
-        <Col md={8}>
+    <Container fluid className="container">
+      <section className="content">
+        <div className="content-text">
           <p>
-          Met onze milieuvriendelijke en duurzame reinigingssysteem reinigen wij uw tankstation.
-          <br></br>Onze hogedruk stoomreinigingssysteem zorgt voor een antibacterieel en antischimmel werking en verwijdert met behulp van additieven vaste stoffen en ingewerkte vloeibare stoffen.
+            Met onze milieuvriendelijke en duurzame reinigingssysteem reinigen wij uw tankstation.
+            <br></br>Onze hogedruk stoomreinigingssysteem zorgt voor een antibacterieel en antischimmel werking en verwijdert met behulp van additieven vaste stoffen en ingewerkte vloeibare stoffen.
           </p>
           <p>
-          Wij werken graag samen met u en helpen u graag in het behouden van een schoon en glanzende tankstation!
+            Wij werken graag samen met u en helpen u graag in het behouden van een schoon en glanzende tankstation!
           </p>
           <p>De volgende werkzaamheden zullen worden uitgevoerd om uw tankstation te reinigen:</p>
           <ul>
@@ -43,17 +37,14 @@ export const Tankstations = () => {
             <li>Ramen reinigen</li>
             <li>Prijsbord reinigen</li>
           </ul>
-        </Col>
-        <Col md={4} style={styles.imgColumn}>
-          <Image src={tankstations} style={styles.image} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Divider />
-        </Col>
-      </Row>
-      <CustomForm />
+        </div>
+        <div className="content-img">
+          <Image src={tankstations} style={styles.image} fluid />
+        </div>
+      </section>
+      <section className="form">
+        <CustomForm />
+      </section>
     </Container>
   )
 }

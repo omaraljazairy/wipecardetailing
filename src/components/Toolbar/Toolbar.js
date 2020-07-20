@@ -15,6 +15,7 @@ const Toolbar = props => (
               <NavLink exact to='/wagenpark' activeClassName='active' >Wagenpark</NavLink>
               <NavLink exact to='/tankstations' activeClassName='active'>Tankstations</NavLink>
               <NavLink exact to='/contact' activeClassName='active'>Contact</NavLink>
+              <NavLink exact to='/media' activeClassName='active'>Media</NavLink>
             </div>
             <div className="toolbar__toggle-button">
                 <DrawerToggleButton click={props.drawerHandler} />

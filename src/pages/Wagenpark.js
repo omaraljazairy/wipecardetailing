@@ -1,28 +1,51 @@
 import React from 'react';
-import { Container, Image, Row, Col } from 'react-bootstrap';
-import Divider from '../components/Divider/Divider';
+import { Container, Image } from 'react-bootstrap';
+import CustomForm from '../components/Form/CustomForm';
 import '../assets/css/wagenpark.css';
 import wagenpark from '../assets/img/wagenpark.jpg';
 
 export const Wagenpark = () => {
 
-  const screenWidth = window.innerWidth;
-
   const styles = {
     image: {
-      width: 350,
+      width: 'auto',
       height: 300,
-      maxWidth: screenWidth - 30
+      maxWidth: '100%',
+      maxHight: '100%',
+      position: 'relative'
     },
-    imgColumn: {
-      paddingLeft: 15,
-      paddingRight: 1,
-      paddingBottom: 15
-    }
   }
 
   return ( 
-    <Container fluid>
+    <Container fluid className="container">
+    <section className="content">
+      <div className="content-text">
+        <p>Wij worden graag uw partner in het reinigen van uw wagenpark!</p>
+        <p>Vraag nu onze offerte aan:</p>
+        <ul>
+          <li>Service op locatie</li>
+          <li>Flexibiliteit in tijden en locaties</li>
+          <li>Milieuvriendelijke en duurzame werkwijze</li>
+          <li>Flexibel en bespreekbare prijzen</li>
+          <li>Topkwaliteit en hoogwaardig service</li>
+        </ul>
+      </div>
+      <div className="content-img">
+        <Image src={wagenpark} style={styles.image} fluid />
+      </div>
+    </section>
+    <section className="form">
+      <CustomForm />
+    </section>
+  </Container>
+
+  
+  )
+}
+
+
+/**
+ *   <Container fluid>
       <Row className="justify-content-md-center">
         <Col md={6}>
           <p>Wij worden graag uw partner in het reinigen van uw wagenpark!</p>
@@ -45,12 +68,6 @@ export const Wagenpark = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
-
-
-/**
- *
  * 
  * 
  */

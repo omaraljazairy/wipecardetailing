@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { validateDefaultStringValue, validateEmail } from '../../services/validators'
+import { validateDefaultStringValue, validateEmail, validatePostcodeValue, validateMobileno } from '../../services/validators'
 import axios from '../../axios';
 import apiconfigs from '../../configs/api.json'
 import { Form, Col, Row, Button } from 'react-bootstrap'
@@ -15,12 +15,11 @@ const CustomForm = props => {
         companyName: '',
         email: '',
         tel: '',
-        // city: '',
-        // totalCars: '',
+        city: '',
         captcha: '',
-        // street: '',
-        // housenr: '',
-        // postcode: '',
+        street: '',
+        housenr: '',
+        postcode: '',
         message: ''
       }
     )
@@ -30,13 +29,12 @@ const CustomForm = props => {
       {
         companyNameIsValid: false,
         emailIsValid: false,
-        // telIsValid: false,
-        // cityIsValid: false,
-        // totalCarsIsValid: false,
+        telIsValid: false,
+        cityIsValid: false,
         captchaIsValid: false,
-        // streetIsValid: false,
-        // housenrIsValid: false,
-        // postcodeIsValid: false,
+        streetIsValid: false,
+        housenrIsValid: false,
+        postcodeIsValid: false,
         messageIsValid: false
       }
     )
@@ -56,38 +54,34 @@ const CustomForm = props => {
           setFields(prevState => ({ ...prevState, companyName: val }))
           setValidFields(prevState => ({ ...prevState, companyNameIsValid: validateDefaultStringValue(val) }))
           break
-        // case 'tel':
-        //   setFields(prevState => ({ ...prevState, tel: val }))
-        //   setValidFields(prevState => ({ ...prevState, telIsValid: validateMobileno(val) }))
-        //   break
+        case 'tel':
+          setFields(prevState => ({ ...prevState, tel: val }))
+          setValidFields(prevState => ({ ...prevState, telIsValid: validateMobileno(val) }))
+          break
         case 'email':
           setFields(prevState => ({ ...prevState, email: val }))
           setValidFields(prevState => ({ ...prevState, emailIsValid: validateEmail(val) }))
           break
-        // case 'city':
-        //   setFields(prevState => ({ ...prevState, city: val }))
-        //   setValidFields(prevState => ({ ...prevState, cityIsValid: validateDefaultStringValue(val, 20) }))
-        //   break
-        // case 'totalCars':
-        //   setFields(prevState => ({ ...prevState, totalCars: val }))
-        //   setValidFields(prevState => ({ ...prevState, totalCarsIsValid: validateDefaultIntegerValue(val) }))
-        //   break
+        case 'city':
+          setFields(prevState => ({ ...prevState, city: val }))
+          setValidFields(prevState => ({ ...prevState, cityIsValid: validateDefaultStringValue(val, 20) }))
+          break
         case 'captcha':
           setFields(prevState => ({ ...prevState, captcha: val }))
           setValidFields(prevState => ({ ...prevState, captchaIsValid: validateDefaultStringValue(val) }))
           break
-        // case 'street':
-        //     setFields(prevState => ({ ...prevState, street: val }))
-        //     setValidFields(prevState => ({ ...prevState, streetIsValid: validateDefaultStringValue(val, 20) }))
-        //     break
-        // case 'housenr':
-        //     setFields(prevState => ({ ...prevState, housenr: val }))
-        //     setValidFields(prevState => ({ ...prevState, housenrIsValid: validateDefaultStringValue(val, 7) }))
-        //     break
-        // case 'postcode':
-        //     setFields(prevState => ({ ...prevState, postcode: val }))
-        //     setValidFields(prevState => ({ ...prevState, postcodeIsValid: validatePostcodeValue(val) }))
-        //     break
+        case 'street':
+            setFields(prevState => ({ ...prevState, street: val }))
+            setValidFields(prevState => ({ ...prevState, streetIsValid: validateDefaultStringValue(val, 20) }))
+            break
+        case 'housenr':
+            setFields(prevState => ({ ...prevState, housenr: val }))
+            setValidFields(prevState => ({ ...prevState, housenrIsValid: validateDefaultStringValue(val, 7) }))
+            break
+        case 'postcode':
+            setFields(prevState => ({ ...prevState, postcode: val }))
+            setValidFields(prevState => ({ ...prevState, postcodeIsValid: validatePostcodeValue(val) }))
+            break
         case 'message':
             setFields(prevState => ({ ...prevState, message: val }))
             setValidFields(prevState => ({ ...prevState, messageIsValid: validateDefaultStringValue(val, 900) }))
@@ -102,12 +96,8 @@ const CustomForm = props => {
      * @return bool
      */
     const validateForm = () => {
-      // console.log('captcha key: ', process.env.REACT_APP_GOOGLE_CAPTCHA_SITE_KEY)
+
       const isValid = Object.values(validFields).every((val) => (val === true))
-  
-      // console.log('fields from setAndValidate: ', fields)
-      // console.log('fields from ValidFields: ', validFields)
-      // console.log('isValid: ', isValid)
       return isValid
     }
   
@@ -141,26 +131,24 @@ const CustomForm = props => {
       setFields({
         companyName: '',
         email: '',
-        // tel: '',
-        // city: '',
-        // totalCars: '',
+        tel: '',
+        city: '',
         captcha: null,
-        // street: '',
-        // housenr: '',
-        // postcode: '',
+        street: '',
+        housenr: '',
+        postcode: '',
         message: ''
       })
   
       setValidFields({
         companyNameIsValid: false,
         emailIsValid: false,
-        // telIsValid: false,
-        // cityIsValid: false,
-        // totalCarsIsValid: false,
+        telIsValid: false,
+        cityIsValid: false,
         captchaIsValid: false,
-        // streetIsValid: false,
-        // housenrIsValid: false,
-        // postcodeIsValid: false,
+        streetIsValid: false,
+        housenrIsValid: false,
+        postcodeIsValid: false,
         messageIsValid: false
       })
       validateForm()
@@ -201,24 +189,21 @@ const CustomForm = props => {
       companyNameField: {
         background: validFields.companyNameIsValid ? 'lightgreen' : 'white'
       },
-      // telField: {
-      //   background: validFields.telIsValid ? 'lightgreen' : 'white'
-      // },
-      // cityField: {
-      //   backgroundColor: validFields.cityIsValid ? 'lightgreen' : 'white'
-      // },
-      // totalCarsField: {
-      //   background: validFields.totalCarsIsValid ? 'lightgreen' : 'white'
-      // },
-      // streetField: {
-      //   background: validFields.streetIsValid ? 'lightgreen' : 'white'
-      // },
-      // housenrField: {
-      //   background: validFields.housenrIsValid ? 'lightgreen' : 'white'
-      // },
-      // postcodeField: {
-      //   background: validFields.postcodeIsValid ? 'lightgreen' : 'white'
-      // },
+      telField: {
+        background: validFields.telIsValid ? 'lightgreen' : 'white'
+      },
+      cityField: {
+        backgroundColor: validFields.cityIsValid ? 'lightgreen' : 'white'
+      },
+      streetField: {
+        background: validFields.streetIsValid ? 'lightgreen' : 'white'
+      },
+      housenrField: {
+        background: validFields.housenrIsValid ? 'lightgreen' : 'white'
+      },
+      postcodeField: {
+        background: validFields.postcodeIsValid ? 'lightgreen' : 'white'
+      },
       messageField: {
         background: validFields.messageIsValid ? 'lightgreen' : 'white'
       },
@@ -229,7 +214,8 @@ const CustomForm = props => {
     }
   
     const formFieldSize_m = 8
-  
+    const formFieldSize_s = 4
+    
     return (
         <div className="form">
         <Row className="justify-content-md-center">
@@ -242,8 +228,8 @@ const CustomForm = props => {
           <Form.Row className="justify-content-md-center">
             <Col md={formFieldSize_m}>
               <Form.Group controlId='company'>
-                <Form.Label>Bedrijfnaam</Form.Label>
-                <Form.Control type='text' placeholder='uw bedrijfnaam' name='companyName' value={fields.companyName} onChange={val => setAndValidateForm('companyName', val.target.value)} style={styles.companyNameField} />
+                <Form.Label>Bedrijfsnaam</Form.Label>
+                <Form.Control type='text' placeholder='Bedrijfsnaam' name='companyName' value={fields.companyName} onChange={val => setAndValidateForm('companyName', val.target.value)} style={styles.companyNameField} />
               </Form.Group>
             </Col>
           </Form.Row>
@@ -251,7 +237,45 @@ const CustomForm = props => {
             <Col md={formFieldSize_m}>
               <Form.Group controlId='email'>
                 <Form.Label>Email</Form.Label>
-                <Form.Control type='email' placeholder='emailadres' name='email' value={fields.email} onChange={val => setAndValidateForm('email', val.target.value)} style={styles.emailField} />
+                <Form.Control type='email' placeholder='Emailadres' name='email' value={fields.email} onChange={val => setAndValidateForm('email', val.target.value)} style={styles.emailField} />
+              </Form.Group>
+            </Col>
+          </Form.Row>
+          <Form.Row className="justify-content-md-center">
+            <Col md={formFieldSize_m}>
+              <Form.Group controlId='tel'>
+                <Form.Label>Telefoonnummer</Form.Label>
+                <Form.Control type='tel' placeholder='Telefoonnummer' name='tel' value={fields.tel} onChange={val => setAndValidateForm('tel', val.target.value)} style={styles.telField} />
+              </Form.Group>
+            </Col>
+          </Form.Row>
+          <Form.Row className="justify-content-md-center">
+            <Col md={formFieldSize_m}>
+              <Form.Group controlId='street'>
+                <Form.Label>Straatnaam</Form.Label>
+                <Form.Control type='text' placeholder='Straatnaam' name='street' value={fields.street} onChange={val => setAndValidateForm('street', val.target.value)} style={styles.streetField} />
+              </Form.Group>
+            </Col>
+          </Form.Row>
+          <Form.Row className="justify-content-md-center">
+            <Col md={formFieldSize_s}>
+              <Form.Group controlId='housenr'>
+                <Form.Label>Huisnummer</Form.Label>
+                <Form.Control type='text' placeholder='Huisnummer' name='housenr' value={fields.housenr} onChange={val => setAndValidateForm('housenr', val.target.value)} style={styles.housenrField} />
+              </Form.Group>
+            </Col>
+            <Col md={formFieldSize_s}>
+              <Form.Group controlId='postcode'>
+                <Form.Label>Postcode</Form.Label>
+                <Form.Control type='text' placeholder='Postcode' name='postcode' value={fields.postcode} onChange={val => setAndValidateForm('postcode', val.target.value)} style={styles.postcodeField} />
+              </Form.Group>
+            </Col>
+          </Form.Row>
+          <Form.Row className="justify-content-md-center">
+            <Col md={formFieldSize_m}>
+              <Form.Group controlId='city'>
+                <Form.Label>Stad</Form.Label>
+                <Form.Control type='text' placeholder='Stad' name='city' value={fields.city} onChange={val => setAndValidateForm('city', val.target.value)} style={styles.cityField} />
               </Form.Group>
             </Col>
           </Form.Row>

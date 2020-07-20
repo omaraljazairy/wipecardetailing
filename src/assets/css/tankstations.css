@@ -2,3 +2,32 @@
     border: 1px solid #13178C;
     border-radius: 5px;
 }
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.form {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    background-color: aliceblue;
+    padding: 10px;
+}
+
+.content-img {
+    position: relative;
+    padding: 15px;
+    /* margin: auto 0; */
+}
+
+.content-text {
+    width: fit-content;
+    position: relative;
+}
